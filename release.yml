@@ -1,0 +1,6 @@
+release:
+  discussion_category_name: Announcements
+announce:
+  twitter:
+    enabled: true
+    message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it while its fresh: https://github.com/caarlos0/{{ .ProjectName }}/releases/tag/{{ .Tag }}'
