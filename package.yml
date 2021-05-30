@@ -3,11 +3,11 @@ brews:
     owner: caarlos0
     name: homebrew-tap
   folder: Formula
-  homepage:  https://github.com/caarlos0/{{ .ProjectName }}
-  description: {{ .Env.DESC }}
+  homepage: 'https://github.com/caarlos0/{{ .ProjectName }}'
+  description: '{{ .Env.DESC }}'
 nfpms:
-- homepage:  https://github.com/caarlos0/{{ .ProjectName }}
-  description: {{ .Env.DESC }}
+- homepage: 'https://github.com/caarlos0/{{ .ProjectName }}'
+  description: '{{ .Env.DESC }}'
   maintainer: Carlos Alexandro Becker <carlos@becker.software>
   license: MIT
   vendor: Becker Software
