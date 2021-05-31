@@ -1,0 +1,37 @@
+before:
+  hooks:
+    - ./scripts/completions.sh
+archives:
+- name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  files:
+    - README.md
+    - LICENSE.md
+    - completions/*
+brews:
+- tap:
+    owner: caarlos0
+    name: homebrew-tap
+  homepage: '{{ .projectURL }}'
+  description: '{{ .description }}'
+  folder: Formula
+  install: |-
+    bin.install "{{ .ProjectName }}"
+    bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"
+    zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
+    fish_completion.install "completions/{{ .ProjectName }}.fish"
+nfpms:
+- maintainer: Carlos A Becker <pkg@carlosbecker.com>
+  description: '{{ .description }}'
+  homepage: '{{ .projectURL }}'
+  license: MIT
+  contents:
+    - src: ./completions/{{ .ProjectName }}.bash
+      dst: /etc/bash_completion.d/{{ .ProjectName }}
+    - src: ./completions/{{ .ProjectName }}.fish
+      dst: /usr/share/fish/completions/{{ .ProjectName }}.fish
+    - src: ./completions/{{ .ProjectName }}.zsh
+      dst: /usr/local/share/zsh/site-functions/_{{ .ProjectName }}
+  formats:
+  - deb
+  - rpm
+  - apk
