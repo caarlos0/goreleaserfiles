@@ -11,7 +11,7 @@ brews:
 - tap:
     owner: caarlos0
     name: homebrew-tap
-  homepage: '{{ .projectURL }}'
+  homepage: '{{ .homepage }}'
   description: '{{ .description }}'
   folder: Formula
   install: |-
@@ -22,7 +22,7 @@ brews:
 nfpms:
 - maintainer: Carlos A Becker <pkg@carlosbecker.com>
   description: '{{ .description }}'
-  homepage: '{{ .projectURL }}'
+  homepage: '{{ .homepage }}'
   license: MIT
   contents:
     - src: ./completions/{{ .ProjectName }}.bash
