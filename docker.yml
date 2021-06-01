@@ -1,0 +1,45 @@
+dockers:
+- image_templates:
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  dockerfile: Dockerfile
+  use_buildx: true
+  build_flag_templates:
+  - "--pull"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.name={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  - "--label=org.opencontainers.image.source=https://github.com/caarlos0/{{ .ProjectName }}"
+  - "--platform=linux/amd64"
+- image_templates:
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  dockerfile: Dockerfile
+  use_buildx: true
+  build_flag_templates:
+  - "--pull"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.name={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  - "--label=org.opencontainers.image.source=https://github.com/caarlos0/{{ .ProjectName }}"
+  - "--platform=linux/arm64"
+  goarch: arm64
+docker_manifests:
+- name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}'
+  image_templates:
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+- name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:latest'
+  image_templates:
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+- name_template: 'caarlos0/{{ .ProjectName }}:{{ .Tag }}'
+  image_templates:
+  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+- name_template: 'caarlos0/{{ .ProjectName }}:latest'
+  image_templates:
+  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
