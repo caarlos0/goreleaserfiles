@@ -1,5 +1,10 @@
 release:
   discussion_category_name: Announcements
+  footer: |
+    ---
+
+    _Released with [GoReleaser Pro](https://goreleaser.com/pro)!_
+
 announce:
   twitter:
     enabled: true
