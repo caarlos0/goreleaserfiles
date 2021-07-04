@@ -20,7 +20,7 @@ brews:
     zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
     fish_completion.install "completions/{{ .ProjectName }}.fish"
 nfpms:
-- maintainer: Carlos A Becker <pkg@carlosbecker.com>
+- maintainer: Carlos Alexandro Becker <carlos@becker.software>
   description: '{{ .description }}'
   homepage: '{{ .homepage }}'
   license: MIT
