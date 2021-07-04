@@ -9,7 +9,7 @@ on:
 jobs:" >.github/workflows/check.yml
 
 for f in *.yml; do
-	echo "  $f:
+	echo "  $(basename "$f" ".yml"):
     runs-on: ubuntu-latest
     steps:
       - name: checkout

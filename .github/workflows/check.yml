@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  build.yml:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -15,7 +15,7 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f build.yml
-  docker.yml:
+  docker:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -25,7 +25,7 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f docker.yml
-  lib.yml:
+  lib:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -35,7 +35,7 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f lib.yml
-  package_with_completions.yml:
+  package_with_completions:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -45,7 +45,7 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f package_with_completions.yml
-  package.yml:
+  package:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -55,7 +55,7 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f package.yml
-  podman.yml:
+  podman:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -65,7 +65,7 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f podman.yml
-  release.yml:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
