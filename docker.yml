@@ -3,7 +3,7 @@ dockers:
   - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
   - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
   dockerfile: Dockerfile
-  use_buildx: true
+  use: buildx
   build_flag_templates:
   - "--pull"
   - "--label=org.opencontainers.image.created={{.Date}}"
@@ -16,7 +16,7 @@ dockers:
   - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
   - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
   dockerfile: Dockerfile
-  use_buildx: true
+  use: buildx
   build_flag_templates:
   - "--pull"
   - "--label=org.opencontainers.image.created={{.Date}}"
