@@ -5,49 +5,72 @@ on:
   pull_request:
 
 jobs:
-  build:
+  build.yml:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
-
-      - name: goreleaser check build.yml
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
           args: check -q -f build.yml
-
-      - name: goreleaser check docker.yml
+  docker.yml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
           args: check -q -f docker.yml
-
-      - name: goreleaser check lib.yml
+  lib.yml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
           args: check -q -f lib.yml
-
-      - name: goreleaser check package_with_completions.yml
+  package_with_completions.yml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
           args: check -q -f package_with_completions.yml
-
-      - name: goreleaser check package.yml
+  package.yml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
           args: check -q -f package.yml
-
-      - name: goreleaser check podman.yml
+  podman.yml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
           args: check -q -f podman.yml
-
-      - name: goreleaser check release.yml
+  release.yml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
