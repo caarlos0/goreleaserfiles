@@ -10,13 +10,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: goreleaser check build.yml
+      - name: goreleaser install
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser-pro
-          args: check -q -f build.yml
-      - name: goreleaser check docker.yml
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          distribution: goreleaser-pro
-          args: check -q -f docker.yml
+          args: --version
+      - name: goreleaser check
+        run: goreleaser --version
