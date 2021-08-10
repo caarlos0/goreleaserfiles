@@ -14,4 +14,4 @@ release:
 announce:
   twitter:
     enabled: true
-    message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it while its fresh: https://github.com/caarlos0/{{ .ProjectName }}/releases/tag/{{ .Tag }}'
+    message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it while its fresh: {{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}/releases/tag/{{ .Tag }}'

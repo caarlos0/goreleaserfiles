@@ -10,7 +10,7 @@ dockers:
   - "--label=org.opencontainers.image.name={{.ProjectName}}"
   - "--label=org.opencontainers.image.revision={{.FullCommit}}"
   - "--label=org.opencontainers.image.version={{.Version}}"
-  - "--label=org.opencontainers.image.source=https://github.com/caarlos0/{{ .ProjectName }}"
+  - "--label=org.opencontainers.image.source={{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
   - "--platform=linux/amd64"
 - image_templates:
   - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
@@ -23,7 +23,7 @@ dockers:
   - "--label=org.opencontainers.image.name={{.ProjectName}}"
   - "--label=org.opencontainers.image.revision={{.FullCommit}}"
   - "--label=org.opencontainers.image.version={{.Version}}"
-  - "--label=org.opencontainers.image.source=https://github.com/caarlos0/{{ .ProjectName }}"
+  - "--label=org.opencontainers.image.source={{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
   - "--platform=linux/arm64"
   goarch: arm64
 docker_manifests:
