@@ -4,6 +4,7 @@ release:
     ---
 
     _Released with [GoReleaser Pro](https://goreleaser.com/pro)!_
+    {{ with .pubkey}}Artifacts can be verified with [this]({{ . }}) key.{{ end }}
 
 announce:
   twitter:
@@ -12,3 +13,4 @@ announce:
 
 variables:
   repository: ""
+  pubkey: ""
