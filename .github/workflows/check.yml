@@ -15,6 +15,26 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f build.yml
+  cosign_checksum:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser-pro
+          args: check -q -f cosign_checksum.yml
+  cosign_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser-pro
+          args: check -q -f cosign_docker.yml
   docker:
     runs-on: ubuntu-latest
     steps:
@@ -35,16 +55,6 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f lib.yml
-  package_with_completions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: check
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          distribution: goreleaser-pro
-          args: check -q -f package_with_completions.yml
   package:
     runs-on: ubuntu-latest
     steps:
@@ -55,6 +65,16 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f package.yml
+  package_with_completions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser-pro
+          args: check -q -f package_with_completions.yml
   podman:
     runs-on: ubuntu-latest
     steps:
