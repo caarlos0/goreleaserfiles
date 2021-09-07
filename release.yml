@@ -9,3 +9,6 @@ announce:
   twitter:
     enabled: true
     message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it now: {{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}/releases/tag/{{ .Tag }}'
+
+variables:
+  repository: ""
