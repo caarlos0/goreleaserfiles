@@ -1,0 +1,3 @@
+docker_signs:
+- artifacts: manifests
+  stdin: '{{ .Env.COSIGN_PWD }}'

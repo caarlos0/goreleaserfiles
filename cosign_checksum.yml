@@ -1,0 +1,8 @@
+checksum:
+  name_template: 'checksums.txt'
+
+signs:
+- cmd: cosign
+  stdin: '{{ .Env.COSIGN_PWD }}'
+  args: ["sign-blob", "-key=cosign.key", "-output=${signature}", "${artifact}"]
+  artifacts: checksum
