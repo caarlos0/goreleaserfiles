@@ -1,10 +1,13 @@
 release:
   discussion_category_name: Announcements
   footer: |
+    {{ with .pubkey }}
+    Artifacts can be verified with [cosign](https://github.com/sigstore/cosign) using [this public key]({{ . }}).
+    {{ end }}
+
     ---
 
     _Released with [GoReleaser Pro](https://goreleaser.com/pro)!_
-    {{ with .pubkey}}Artifacts can be verified with [this]({{ . }}) key.{{ end }}
 
 announce:
   twitter:
