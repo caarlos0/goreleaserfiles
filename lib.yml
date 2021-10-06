@@ -1,17 +1,8 @@
+includes:
+  - from_url:
+      url: https://raw.githubusercontent.com/caarlos0/.goreleaserfiles/main/release.yml
 before:
   hooks:
     - go mod tidy
 builds:
 - skip: true
-changelog:
-  sort: asc
-  filters:
-    exclude:
-    - '^docs:'
-    - '^test:'
-release:
-  discussion_category_name: Announcements
-announce:
-  twitter:
-    enabled: true
-    message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it while its fresh: {{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}/releases/tag/{{ .Tag }}'
