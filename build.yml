@@ -1,8 +1,10 @@
 before:
   hooks:
     - go mod tidy
+
 gomod:
   proxy: true
+
 builds:
 - env:
   - CGO_ENABLED=0
