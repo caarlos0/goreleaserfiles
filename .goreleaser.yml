@@ -1,3 +1,5 @@
 includes:
   - from_file:
-      path: ./lib.yml
+      path: ./release.yml
+builds:
+- skip: true
