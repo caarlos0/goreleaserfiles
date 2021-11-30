@@ -5,9 +5,27 @@ changelog:
     exclude:
     - '^docs:'
     - '^test:'
+    - '^chore'
+    - Merge pull request
+    - Merge remote-tracking branch
+    - Merge branch
+    - go mod tidy
+  groups:
+    - title: 'New Features'
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 0
+    - title: 'Bug fixes'
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 10
+    - title: Other work
+      order: 999
 
 release:
   footer: |
+    {{- if .repository }}
+    **Full Changelog**: {{ .repository }}/compare/{{ .PreviousTag }}...{{ .Tag }}
+    {{- end }}
+
     {{ with .pubkey }}
     Artifacts can be verified with [cosign](https://github.com/sigstore/cosign) using [this public key]({{ . }}).
     {{ end }}
@@ -23,3 +41,4 @@ announce:
 
 variables:
   pubkey: ""
+  repository: ""
