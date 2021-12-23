@@ -29,10 +29,6 @@ release:
     **Full Changelog**: {{ .repository }}/compare/{{ .PreviousTag }}...{{ .Tag }}
     {{- end }}
 
-    {{ with .pubkey }}
-    Artifacts can be verified with [cosign](https://github.com/sigstore/cosign) using [this public key]({{ . }}).
-    {{ end }}
-
     ---
 
     _Released with [GoReleaser Pro](https://goreleaser.com/pro)!_
@@ -43,5 +39,4 @@ announce:
     message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it now: {{ .ReleaseURL }}'
 
 variables:
-  pubkey: ""
   repository: ""

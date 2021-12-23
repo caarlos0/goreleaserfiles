@@ -1,11 +1,8 @@
-before:
-  hooks:
-  - wget -c https://raw.githubusercontent.com/caarlos0/goreleaserfiles/main/cosign.key -O /tmp/caarlos0_cosign.key
-
-variables:
-  pubkey: https://raw.githubusercontent.com/caarlos0/goreleaserfiles/main/cosign.pub
-
 docker_signs:
-- artifacts: manifests
-  stdin: '{{ .Env.COSIGN_PWD }}'
-  args: ["sign", "-key=/tmp/caarlos0_cosign.key", "${artifact}"]
+- cmd: cosign
+  artifacts: manifests
+  env:
+  - COSIGN_EXPERIMENTAL=1
+  args:
+  - 'sign'
+  - '${artifact}'
