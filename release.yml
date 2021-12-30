@@ -34,6 +34,7 @@ release:
     _Released with [GoReleaser Pro](https://goreleaser.com/pro)!_
 
 announce:
+  skip: "{{gt .Patch 0}}"
   twitter:
     enabled: true
     message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it now: {{ .ReleaseURL }}'
