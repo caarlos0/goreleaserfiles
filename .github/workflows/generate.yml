@@ -10,8 +10,7 @@ on:
       - 'scripts/workflows.sh'
 
 permissions:
-  workflows: true
-  contents: true
+  contents: write
 
 jobs:
   docs:
