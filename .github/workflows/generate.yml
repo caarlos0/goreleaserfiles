@@ -9,6 +9,10 @@ on:
       - '*.yml'
       - 'scripts/workflows.sh'
 
+permissions:
+  workflows: true
+  contents: true
+
 jobs:
   docs:
     runs-on: ubuntu-latest
