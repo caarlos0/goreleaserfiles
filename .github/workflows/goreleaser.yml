@@ -9,6 +9,8 @@ on:
     secrets:
       docker_password:
         required: true
+      github_token:
+        required: true
 
 jobs:
   release:
@@ -48,4 +50,4 @@ jobs:
         version: latest
         args: release --rm-dist
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.github_token }}
