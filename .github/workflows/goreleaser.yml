@@ -9,7 +9,7 @@ on:
     secrets:
       docker_password:
         required: true
-      github_token:
+      gh_pat:
         required: true
 
 jobs:
@@ -50,4 +50,4 @@ jobs:
         version: latest
         args: release --rm-dist
       env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
+        GITHUB_TOKEN: ${{ secrets.gh_pat }}
