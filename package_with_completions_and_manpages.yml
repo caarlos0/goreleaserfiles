@@ -25,6 +25,7 @@ brews:
 nfpms:
 - maintainer: Carlos Alexandro Becker <carlos@becker.software>
   description: '{{ .description }}'
+  file_name_template: '{{ .ConventionalFileName }}'
   homepage: '{{ with .homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
   license: MIT
   contents:
