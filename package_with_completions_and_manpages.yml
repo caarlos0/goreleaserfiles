@@ -14,7 +14,7 @@ brews:
       owner: caarlos0
       name: homebrew-tap
     homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-    description: '{{ {{ .Var.description }} }}'
+    description: '{{ .Var.description }}'
     folder: Formula
     install: |-
       bin.install "{{ .ProjectName }}"
@@ -24,7 +24,7 @@ brews:
       man1.install "manpages/{{ .ProjectName }}.1.gz"
 nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>
-    description: '{{ {{ .Var.description }} }}'
+    description: '{{ .Var.description }}'
     file_name_template: '{{ .ConventionalFileName }}'
     homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
@@ -43,7 +43,7 @@ nfpms:
       - apk
 aurs:
   - maintainers: ['Carlos Alexandro Becker <carlos@becker.software>']
-    description: '{{ .Var.description }} }}'
+    description: '{{ .Var.description }}'
     homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     private_key: '{{ .Env.AUR_KEY }}'
