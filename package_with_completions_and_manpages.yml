@@ -13,7 +13,7 @@ brews:
   - tap:
       owner: caarlos0
       name: homebrew-tap
-    homepage: '{{ with {{ .Var.homepage }} }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     description: '{{ {{ .Var.description }} }}'
     folder: Formula
     install: |-
@@ -26,7 +26,7 @@ nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>
     description: '{{ {{ .Var.description }} }}'
     file_name_template: '{{ .ConventionalFileName }}'
-    homepage: '{{ with {{ .Var.homepage }} }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     contents:
       - src: ./completions/{{ .ProjectName }}.bash
@@ -44,7 +44,7 @@ nfpms:
 aurs:
   - maintainers: ['Carlos Alexandro Becker <carlos@becker.software>']
     description: '{{ .Var.description }} }}'
-    homepage: '{{ .Var.homepage }} }}'
+    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     private_key: '{{ .Env.AUR_KEY }}'
     git_url: 'ssh://aur@aur.archlinux.org/{{ .ProjectName }}-bin.git'
