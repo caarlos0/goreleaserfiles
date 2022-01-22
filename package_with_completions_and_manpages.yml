@@ -3,41 +3,62 @@ before:
     - ./scripts/completions.sh
     - ./scripts/manpages.sh
 archives:
-- name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-  files:
-    - README.md
-    - LICENSE.md
-    - completions/*
-    - manpages/*
+  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    files:
+      - README.md
+      - LICENSE.md
+      - completions/*
+      - manpages/*
 brews:
-- tap:
-    owner: caarlos0
-    name: homebrew-tap
-  homepage: '{{ with .homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-  description: '{{ .description }}'
-  folder: Formula
-  install: |-
-    bin.install "{{ .ProjectName }}"
-    bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"
-    zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
-    fish_completion.install "completions/{{ .ProjectName }}.fish"
-    man1.install "manpages/{{ .ProjectName }}.1.gz"
+  - tap:
+      owner: caarlos0
+      name: homebrew-tap
+    homepage: '{{ with {{ .Var.homepage }} }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    description: '{{ {{ .Var.description }} }}'
+    folder: Formula
+    install: |-
+      bin.install "{{ .ProjectName }}"
+      bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"
+      zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
+      fish_completion.install "completions/{{ .ProjectName }}.fish"
+      man1.install "manpages/{{ .ProjectName }}.1.gz"
 nfpms:
-- maintainer: Carlos Alexandro Becker <carlos@becker.software>
-  description: '{{ .description }}'
-  file_name_template: '{{ .ConventionalFileName }}'
-  homepage: '{{ with .homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-  license: MIT
-  contents:
-    - src: ./completions/{{ .ProjectName }}.bash
-      dst: /etc/bash_completion.d/{{ .ProjectName }}
-    - src: ./completions/{{ .ProjectName }}.fish
-      dst: /usr/share/fish/completions/{{ .ProjectName }}.fish
-    - src: ./completions/{{ .ProjectName }}.zsh
-      dst: /usr/local/share/zsh/site-functions/_{{ .ProjectName }}
-    - src: ./manpages/{{ .ProjectName }}.1.gz
-      dst: /usr/share/man/man1/{{ .ProjectName }}.1.gz
-  formats:
-  - deb
-  - rpm
-  - apk
+  - maintainer: Carlos Alexandro Becker <carlos@becker.software>
+    description: '{{ {{ .Var.description }} }}'
+    file_name_template: '{{ .ConventionalFileName }}'
+    homepage: '{{ with {{ .Var.homepage }} }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    license: MIT
+    contents:
+      - src: ./completions/{{ .ProjectName }}.bash
+        dst: /etc/bash_completion.d/{{ .ProjectName }}
+      - src: ./completions/{{ .ProjectName }}.fish
+        dst: /usr/share/fish/completions/{{ .ProjectName }}.fish
+      - src: ./completions/{{ .ProjectName }}.zsh
+        dst: /usr/local/share/zsh/site-functions/_{{ .ProjectName }}
+      - src: ./manpages/{{ .ProjectName }}.1.gz
+        dst: /usr/share/man/man1/{{ .ProjectName }}.1.gz
+    formats:
+      - deb
+      - rpm
+      - apk
+aurs:
+  - maintainers: ['Carlos Alexandro Becker <carlos@becker.software>']
+    description: '{{ .Var.description }} }}'
+    homepage: '{{ .Var.homepage }} }}'
+    license: MIT
+    private_key: '{{ .Env.AUR_KEY }}'
+    git_url: 'ssh://aur@aur.archlinux.org/{{ .ProjectName }}-bin.git'
+    package: |-
+      # bin
+      install -Dm755 "./{{ .ProjectName }}" "${pkgdir}/usr/bin/{{ .ProjectName }}"
+      # license
+      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses/{{ .ProjectName }}/LICENSE"
+      # completions
+      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
+      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
+      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
+      install -Dm644 "./completions/{{ .ProjectName }}.bash" "${pkgdir}/usr/share/bash-completion/completions/{{ .ProjectName }}"
+      install -Dm644 "./completions/{{ .ProjectName }}.zsh" "${pkgdir}/usr/share/zsh/site-functions/_{{ .ProjectName }}"
+      install -Dm644 "./completions/{{ .ProjectName }}.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/{{ .ProjectName }}.fish"
+      # man pages
+      install -Dm644 "./manpages/{{ .ProjectName }}.1.gz" "${pkgdir}/usr/share/man/man1/{{ .ProjectName }}.1.gz"
