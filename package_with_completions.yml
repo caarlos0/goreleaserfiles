@@ -11,8 +11,8 @@ brews:
   - tap:
       owner: caarlos0
       name: homebrew-tap
-    homepage: '{{ with .homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-    description: '{{ .description }}'
+    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    description: '{{ .Var.description }}'
     folder: Formula
     install: |-
       bin.install "{{ .ProjectName }}"
@@ -22,8 +22,8 @@ brews:
 nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>
     file_name_template: '{{ .ConventionalFileName }}'
-    description: '{{ .description }}'
-    homepage: '{{ with .homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    description: '{{ .Var.description }}'
+    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     contents:
       - src: ./completions/{{ .ProjectName }}.bash
@@ -42,7 +42,7 @@ aurs:
     homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     private_key: '{{ .Env.AUR_KEY }}'
-    git_url: 'ssh://aur@aur.archlinux.org/{{ .ProjectName }}-bin.git'
+    git_url: 'ssh://aur@aur.archlinux.org/{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin.git'
     package: |-
       # bin
       install -Dm755 "./{{ .ProjectName }}" "${pkgdir}/usr/bin/{{ .ProjectName }}"
@@ -55,3 +55,6 @@ aurs:
       install -Dm644 "./completions/{{ .ProjectName }}.bash" "${pkgdir}/usr/share/bash-completion/completions/{{ .ProjectName }}"
       install -Dm644 "./completions/{{ .ProjectName }}.zsh" "${pkgdir}/usr/share/zsh/site-functions/_{{ .ProjectName }}"
       install -Dm644 "./completions/{{ .ProjectName }}.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/{{ .ProjectName }}.fish"
+
+variables:
+  aur_project_name: ""
