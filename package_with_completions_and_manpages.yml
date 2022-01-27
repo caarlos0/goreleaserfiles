@@ -47,6 +47,7 @@ aurs:
     homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     private_key: '{{ .Env.AUR_KEY }}'
+    name: '{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin'
     git_url: 'ssh://aur@aur.archlinux.org/{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin.git'
     package: |-
       # bin

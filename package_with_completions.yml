@@ -39,6 +39,7 @@ nfpms:
 aurs:
   - maintainers: ['Carlos Alexandro Becker <carlos@becker.software>']
     description: '{{ .Var.description }}'
+    name: '{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin'
     homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
     license: MIT
     private_key: '{{ .Env.AUR_KEY }}'
