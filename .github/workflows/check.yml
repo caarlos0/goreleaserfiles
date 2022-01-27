@@ -55,16 +55,6 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f lib.yml
-  package_with_completions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: check
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          distribution: goreleaser-pro
-          args: check -q -f package_with_completions.yml
   package:
     runs-on: ubuntu-latest
     steps:
@@ -75,6 +65,26 @@ jobs:
         with:
           distribution: goreleaser-pro
           args: check -q -f package.yml
+  package_with_completions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser-pro
+          args: check -q -f package_with_completions.yml
+  package_with_completions_and_manpages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser-pro
+          args: check -q -f package_with_completions_and_manpages.yml
   podman:
     runs-on: ubuntu-latest
     steps:
