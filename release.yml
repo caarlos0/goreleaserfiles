@@ -41,9 +41,6 @@ release:
 
 announce:
   skip: "{{gt .Patch 0}}"
-  twitter:
-    enabled: true
-    message_template: '{{ .ProjectName }} {{ .Tag }} was just released! Get it now: {{ .ReleaseURL }}'
 
 variables:
   repository: ""
