@@ -1,7 +1,7 @@
 dockers:
 - image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-amd64'
+  - 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-amd64'
   dockerfile: Dockerfile
   use: buildx
   build_flag_templates:
@@ -13,8 +13,8 @@ dockers:
   - "--label=org.opencontainers.image.source={{ with .Var.repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
   - "--platform=linux/amd64"
 - image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-arm64'
+  - 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-arm64'
   dockerfile: Dockerfile
   use: buildx
   build_flag_templates:
@@ -27,19 +27,19 @@ dockers:
   - "--platform=linux/arm64"
   goarch: arm64
 docker_manifests:
-- name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}'
+- name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}'
   image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-amd64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-arm64'
 - name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:latest'
   image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-- name_template: 'caarlos0/{{ .ProjectName }}:{{ .Tag }}'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-amd64'
+  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-arm64'
+- name_template: 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}'
   image_templates:
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  - 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-amd64'
+  - 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-arm64'
 - name_template: 'caarlos0/{{ .ProjectName }}:latest'
   image_templates:
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  - 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-amd64'
+  - 'caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}-arm64'
