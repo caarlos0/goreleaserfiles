@@ -2,8 +2,7 @@ docker_signs:
 - cmd: cosign
   artifacts: manifests
   output: true
-  env:
-  - COSIGN_EXPERIMENTAL=1
   args:
   - 'sign'
   - '${artifact}'
+  - '--yes'
