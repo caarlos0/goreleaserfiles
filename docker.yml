@@ -24,7 +24,7 @@ dockers:
   - "--label=org.opencontainers.image.revision={{.FullCommit}}"
   - "--label=org.opencontainers.image.version={{.Version}}"
   - "--label=org.opencontainers.image.source={{ with .Var.repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
-  - "--platform=linux/arm64"
+  - "--platform=linux/arm64,linux/arm/v8,linux/arm/v7"
   goarch: arm64
 docker_manifests:
 - name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}'
