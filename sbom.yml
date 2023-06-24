@@ -1,2 +1,2 @@
 sboms:
-- artifacts: archive
+  - artifacts: archive

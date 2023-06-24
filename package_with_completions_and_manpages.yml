@@ -3,7 +3,7 @@ before:
     - ./scripts/completions.sh
     - ./scripts/manpages.sh
 archives:
-  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     files:
       - README.md
       - LICENSE.md
@@ -13,8 +13,8 @@ brews:
   - tap:
       owner: caarlos0
       name: homebrew-tap
-    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-    description: '{{ .Var.description }}'
+    homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    description: "{{ .Var.description }}"
     folder: Formula
     install: |-
       bin.install "{{ .ProjectName }}"
@@ -24,9 +24,9 @@ brews:
       man1.install "manpages/{{ .ProjectName }}.1.gz"
 nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>
-    description: '{{ .Var.description }}'
-    file_name_template: '{{ .ConventionalFileName }}'
-    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+    description: "{{ .Var.description }}"
+    file_name_template: "{{ .ConventionalFileName }}"
+    homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
     license: MIT
     contents:
       - src: ./completions/{{ .ProjectName }}.bash
@@ -42,13 +42,13 @@ nfpms:
       - rpm
       - apk
 aurs:
-  - maintainers: ['Carlos Alexandro Becker <carlos@becker.software>']
-    description: '{{ .Var.description }}'
-    homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
+  - maintainers: ["Carlos Alexandro Becker <carlos@becker.software>"]
+    description: "{{ .Var.description }}"
+    homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
     license: MIT
-    private_key: '{{ .Env.AUR_KEY }}'
-    name: '{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin'
-    git_url: 'ssh://aur@aur.archlinux.org/{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin.git'
+    private_key: "{{ .Env.AUR_KEY }}"
+    name: "{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin"
+    git_url: "ssh://aur@aur.archlinux.org/{{ with .Var.aur_project_name }}{{ . }}{{ else }}{{ .ProjectName }}{{ end }}-bin.git"
     package: |-
       # bin
       install -Dm755 "./{{ .ProjectName }}" "${pkgdir}/usr/bin/{{ .ProjectName }}"

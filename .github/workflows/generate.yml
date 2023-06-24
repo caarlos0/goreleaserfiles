@@ -3,11 +3,11 @@ name: generate
 on:
   push:
     branches:
-      - 'main'
+      - "main"
     paths:
-      - '.github/workflows/generate.yml'
-      - '*.yml'
-      - 'scripts/workflows.sh'
+      - ".github/workflows/generate.yml"
+      - "*.yml"
+      - "scripts/workflows.sh"
 
 permissions:
   contents: write

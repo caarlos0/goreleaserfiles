@@ -1,14 +1,14 @@
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 signs:
-- cmd: cosign
-  certificate: '${artifact}.pem'
-  output: true
-  artifacts: checksum
-  args:
-  - sign-blob
-  - '--output-certificate=${certificate}'
-  - '--output-signature=${signature}'
-  - '${artifact}'
-  - '--yes'
+  - cmd: cosign
+    certificate: "${artifact}.pem"
+    output: true
+    artifacts: checksum
+    args:
+      - sign-blob
+      - "--output-certificate=${certificate}"
+      - "--output-signature=${signature}"
+      - "${artifact}"
+      - "--yes"

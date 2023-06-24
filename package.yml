@@ -1,20 +1,20 @@
 brews:
-- tap:
-    owner: caarlos0
-    name: homebrew-tap
-  folder: Formula
-  homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-  description: '{{ .Var.description }}'
+  - tap:
+      owner: caarlos0
+      name: homebrew-tap
+    folder: Formula
+    homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    description: "{{ .Var.description }}"
 nfpms:
-- homepage: '{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}'
-  description: '{{ .Var.description }}'
-  maintainer: Carlos Alexandro Becker <carlos@becker.software>
-  license: MIT
-  vendor: Becker Software
-  formats:
-  - apk
-  - deb
-  - rpm
+  - homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    description: "{{ .Var.description }}"
+    maintainer: Carlos Alexandro Becker <carlos@becker.software>
+    license: MIT
+    vendor: Becker Software
+    formats:
+      - apk
+      - deb
+      - rpm
 
 variables:
   homepage: ""

@@ -1,8 +1,8 @@
 docker_signs:
-- cmd: cosign
-  artifacts: manifests
-  output: true
-  args:
-  - 'sign'
-  - '${artifact}'
-  - '--yes'
+  - cmd: cosign
+    artifacts: manifests
+    output: true
+    args:
+      - "sign"
+      - "${artifact}"
+      - "--yes"

@@ -5,4 +5,4 @@ before:
   hooks:
     - go mod tidy
 builds:
-- skip: true
+  - skip: true

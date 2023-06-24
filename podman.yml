@@ -1,49 +1,49 @@
 dockers:
-- image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  dockerfile: Dockerfile
-  use: podman
-  build_flag_templates:
-  - "--pull"
-  - "--label=org.opencontainers.image.created={{.Date}}"
-  - "--label=org.opencontainers.image.name={{.ProjectName}}"
-  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-  - "--label=org.opencontainers.image.version={{.Version}}"
-  - "--label=org.opencontainers.image.source={{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
-  - "--platform=linux/amd64"
-- image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-  dockerfile: Dockerfile
-  use: podman
-  build_flag_templates:
-  - "--pull"
-  - "--label=org.opencontainers.image.created={{.Date}}"
-  - "--label=org.opencontainers.image.name={{.ProjectName}}"
-  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-  - "--label=org.opencontainers.image.version={{.Version}}"
-  - "--label=org.opencontainers.image.source={{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
-  - "--platform=linux/arm64"
-  goarch: arm64
+  - image_templates:
+      - "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64"
+      - "caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64"
+    dockerfile: Dockerfile
+    use: podman
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source={{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+      - "--platform=linux/amd64"
+  - image_templates:
+      - "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64"
+      - "caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64"
+    dockerfile: Dockerfile
+    use: podman
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source={{ with .repository }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+      - "--platform=linux/arm64"
+    goarch: arm64
 docker_manifests:
-- name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}'
-  use: podman
-  image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-- name_template: 'ghcr.io/caarlos0/{{ .ProjectName }}:latest'
-  use: podman
-  image_templates:
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-- name_template: 'caarlos0/{{ .ProjectName }}:{{ .Tag }}'
-  use: podman
-  image_templates:
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
-- name_template: 'caarlos0/{{ .ProjectName }}:latest'
-  use: podman
-  image_templates:
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64'
-  - 'caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64'
+  - name_template: "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}"
+    use: podman
+    image_templates:
+      - "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64"
+      - "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64"
+  - name_template: "ghcr.io/caarlos0/{{ .ProjectName }}:latest"
+    use: podman
+    image_templates:
+      - "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64"
+      - "ghcr.io/caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64"
+  - name_template: "caarlos0/{{ .ProjectName }}:{{ .Tag }}"
+    use: podman
+    image_templates:
+      - "caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64"
+      - "caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64"
+  - name_template: "caarlos0/{{ .ProjectName }}:latest"
+    use: podman
+    image_templates:
+      - "caarlos0/{{ .ProjectName }}:{{ .Tag }}-amd64"
+      - "caarlos0/{{ .ProjectName }}:{{ .Tag }}-arm64"

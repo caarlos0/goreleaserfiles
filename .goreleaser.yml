@@ -2,4 +2,4 @@ includes:
   - from_file:
       path: ./release.yml
 builds:
-- skip: true
+  - skip: true
