@@ -1,9 +1,13 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
 
+variables:
+  aur_project_name: ""
+
 before:
   hooks:
     - ./scripts/completions.sh
     - ./scripts/manpages.sh
+
 archives:
   - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     files:
@@ -11,6 +15,18 @@ archives:
       - LICENSE.md
       - completions/*
       - manpages/*
+
+nix:
+  - repository:
+      owner: caarlos0
+      name: nur
+    homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    description: "{{ .Var.description }}"
+    license: mit
+    extra_install: |-
+      installShellCompletion ./completions/*
+      installManPage ./manpages/{{.ProjectName}}.1.gz
+
 brews:
   - repository:
       owner: caarlos0
@@ -18,12 +34,14 @@ brews:
     homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
     description: "{{ .Var.description }}"
     folder: Formula
+    license: MIT
     install: |-
       bin.install "{{ .ProjectName }}"
       bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"
       zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
       fish_completion.install "completions/{{ .ProjectName }}.fish"
       man1.install "manpages/{{ .ProjectName }}.1.gz"
+
 nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>
     description: "{{ .Var.description }}"
@@ -43,6 +61,7 @@ nfpms:
       - deb
       - rpm
       - apk
+
 aurs:
   - maintainers: ["Carlos Alexandro Becker <carlos@becker.software>"]
     description: "{{ .Var.description }}"
@@ -65,6 +84,3 @@ aurs:
       install -Dm644 "./completions/{{ .ProjectName }}.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/{{ .ProjectName }}.fish"
       # man pages
       install -Dm644 "./manpages/{{ .ProjectName }}.1.gz" "${pkgdir}/usr/share/man/man1/{{ .ProjectName }}.1.gz"
-
-variables:
-  aur_project_name: ""
