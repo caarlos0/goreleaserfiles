@@ -8,10 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: check
-        uses: goreleaser/goreleaser-action@v2
+      - uses: actions/checkout@v2
+      - uses: goreleaser/goreleaser-action@v4
         with:
           distribution: goreleaser-pro
-          args: check *.yml
+          install-only: true
+      - name: check
+        run: |
+          goreleaser check -q *.yml
