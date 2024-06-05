@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+version: 2
 
 variables:
   aur_project_name: ""
