@@ -31,7 +31,7 @@ brews:
       name: homebrew-tap
     homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
     description: "{{ .Var.description }}"
-    folder: Formula
+    directory: Formula
     license: MIT
     extra_install: |-
       bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"

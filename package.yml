@@ -16,7 +16,7 @@ brews:
   - repository:
       owner: caarlos0
       name: homebrew-tap
-    folder: Formula
+    directory: Formula
     license: MIT
     homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
     description: "{{ .Var.description }}"
