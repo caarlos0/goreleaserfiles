@@ -1,0 +1,21 @@
+variables:
+  homepage: ""
+  description: ""
+
+winget:
+  - name: "{{.ProjectName}}"
+    publisher: caarlos0
+    license: MIT
+    homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    short_description: "{{.Var.description}}"
+    repository:
+      owner: caarlos0
+      name: winget-pkgs
+      branch: "{{.ProjectName}}-{{.Version}}"
+      pull_request:
+        enabled: true
+        draft: true
+        base:
+          owner: microsoft
+          name: winget-pkgs
+          branch: master
