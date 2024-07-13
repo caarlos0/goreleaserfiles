@@ -16,6 +16,9 @@ archives:
       - LICENSE.md
       - completions/*
       - manpages/*
+    format_overrides:
+      - goos: windows
+        format: zip
 
 nix:
   - repository:
