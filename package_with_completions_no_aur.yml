@@ -17,7 +17,7 @@ archives:
       - completions/*
     format_overrides:
       - goos: windows
-        format: zip
+        formats: [zip]
 
 nix:
   - repository:
