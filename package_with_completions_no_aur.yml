@@ -9,16 +9,6 @@ before:
   hooks:
     - ./scripts/completions.sh
 
-archives:
-  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
-    files:
-      - README.md
-      - LICENSE.md
-      - completions/*
-    format_overrides:
-      - goos: windows
-        formats: [zip]
-
 nix:
   - repository:
       owner: caarlos0

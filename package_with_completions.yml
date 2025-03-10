@@ -9,6 +9,17 @@ includes:
   - from_url:
       url: https://raw.githubusercontent.com/caarlos0/.goreleaserfiles/main/package_with_completions_no_aur.yml
 
+# TODO: maybe leave name template as default?
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+    files:
+      - README.md
+      - LICENSE.md
+      - completions/*
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
 aurs:
   - maintainers: ["Carlos Alexandro Becker <carlos@becker.software>"]
     description: "{{ .Var.description }}"
