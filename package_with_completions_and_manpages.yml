@@ -31,20 +31,20 @@ nix:
       installShellCompletion ./completions/*
       installManPage ./manpages/{{.ProjectName}}.1.gz
 
-brews:
+homebrew_casks:
   - repository:
       owner: caarlos0
       name: homebrew-tap
     homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    url:
+      verified: github.com/caarlos0/
     description: "{{ .Var.description }}"
-    directory: Formula
-    license: MIT
-    install: |-
-      bin.install "{{ .ProjectName }}"
-      bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"
-      zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
-      fish_completion.install "completions/{{ .ProjectName }}.fish"
-      man1.install "manpages/{{ .ProjectName }}.1.gz"
+    manpages:
+      - "manpages/{{ .ProjectName }}.1.gz"
+    completions:
+      bash: "completions/{{ .ProjectName }}.bash"
+      zsh: "completions/{{ .ProjectName }}.zsh"
+      fish: "completions/{{ .ProjectName }}.fish"
 
 nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>

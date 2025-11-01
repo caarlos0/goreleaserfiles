@@ -19,18 +19,20 @@ nix:
     extra_install: |-
       installShellCompletion ./completions/*
 
-brews:
+homebrew_casks:
   - repository:
       owner: caarlos0
       name: homebrew-tap
     homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    url:
+      verified: github.com/caarlos0/
     description: "{{ .Var.description }}"
-    directory: Formula
-    license: MIT
-    extra_install: |-
-      bash_completion.install "completions/{{ .ProjectName }}.bash" => "{{ .ProjectName }}"
-      zsh_completion.install "completions/{{ .ProjectName }}.zsh" => "_{{ .ProjectName }}"
-      fish_completion.install "completions/{{ .ProjectName }}.fish"
+    manpages:
+      - "manpages/{{ .ProjectName }}.1.gz"
+    completions:
+      bash: "completions/{{ .ProjectName }}.bash"
+      zsh: "completions/{{ .ProjectName }}.zsh"
+      fish: "completions/{{ .ProjectName }}.fish"
 
 nfpms:
   - maintainer: Carlos Alexandro Becker <carlos@becker.software>

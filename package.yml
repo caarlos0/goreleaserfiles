@@ -12,13 +12,13 @@ nix:
     description: "{{ .Var.description }}"
     license: mit
 
-brews:
+homebrew_casks:
   - repository:
       owner: caarlos0
       name: homebrew-tap
-    directory: Formula
-    license: MIT
     homepage: "{{ with .Var.homepage }}{{ . }}{{ else }}https://github.com/caarlos0/{{ .ProjectName }}{{ end }}"
+    url:
+      verified: github.com/caarlos0/
     description: "{{ .Var.description }}"
 
 nfpms:
