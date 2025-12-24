@@ -7,5 +7,5 @@ docker_signs:
     output: true
     args:
       - "sign"
-      - "${artifact}"
+      - "${artifact}@${digest}"
       - "--yes"
