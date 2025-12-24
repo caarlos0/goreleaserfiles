@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+version: 2
+
+dockers_v2:
+  - images:
+      - "ghcr.io/caarlos0/{{ .ProjectName }}"
+      - "caarlos0/{{ .ProjectName }}"
+    tags:
+      - "{{ if .Tag }}{{ .Tag }}{{ else }}{{ .Version }}{{ end }}"
+      - "latest"
+    labels:
+      "org.opencontainers.image.description": "{{.Metadata.Description}}"
+      "org.opencontainers.image.created": "{{.Date}}"
+      "org.opencontainers.image.name": "{{.ProjectName}}"
+      "org.opencontainers.image.revision": "{{.FullCommit}}"
+      "org.opencontainers.image.version": "{{.Version}}"
+      "org.opencontainers.image.source": "{{.GitURL}}"
+    annotations:
+      "org.opencontainers.image.description": "{{.Metadata.Description}}"
