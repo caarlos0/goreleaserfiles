@@ -7,6 +7,7 @@ snapshot:
 changelog:
   sort: asc
   use: github
+  format: '{{ .SHA }}: {{ .Message }}{{ if and (not .IsNightly) .Logins }} ({{ .Logins | listExclude "^@Copilot$" | englishJoin }}){{ end }}'
   filters:
     exclude:
       - "^test:"
@@ -40,7 +41,7 @@ release:
 
     ---
 
-    _Released with [GoReleaser Pro](https://goreleaser.com/pro)!_
+    _Released with [GoReleaser](https://goreleaser.com)!_
 
 announce:
   skip: "{{gt .Patch 0}}"
